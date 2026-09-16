@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estética Animal - Tabela de Preços e Serviços</title>
+    <!-- Configuração e framework CSS -->
+    <script src="../javascript/tailwind-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-brand-beige text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Estética Animal Logo" class="h-12 w-12 object-contain border border-amber-900/10 rounded-full p-1 bg-white">
+                <div>
+                    <h1 class="font-display font-bold text-xl text-brand-darkbrown leading-tight">ESTÉTICA ANIMAL</h1>
+                    <p class="text-xs text-brand-lightbrown font-medium">Cuidado, Carinho & Beleza Pet</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6 font-medium text-sm text-gray-700">
+                <a href="#servicos" class="hover:text-brand-brown transition">Serviços</a>
+                <a href="#precos" class="hover:text-brand-brown transition">Tabela de Preços</a>
+                <a href="#planos" class="hover:text-brand-brown transition">Planos Mensais</a>
+                <a href="#simulador" class="hover:text-brand-brown transition">Simulador</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <button onclick="window.print()" class="no-print bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> Imprimir / PDF
+                </button>
+                <a href="https://wa.me/554195428051" target="_blank" rel="noopener noreferrer" class="bg-brand-brown hover:bg-brand-darkbrown text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Agendar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER HERO COM A IMAGEM DE FUNDO E VÁRIOS CACHORROS -->
+    <section class="hero-bg text-white py-20 px-4 relative overflow-hidden text-center shadow-xl">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative max-w-4xl mx-auto space-y-6">
+            
+            <!-- Logo Central Replicado -->
+            <div class="mx-auto w-32 h-32 md:w-40 md:h-40 bg-white rounded-full p-3 shadow-2xl border-4 border-brand-lightbrown flex items-center justify-center transform hover:scale-105 transition duration-300">
+                <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Estética Animal" class="w-full h-full object-contain rounded-full">
+            </div>
+
+            <!-- Título e Frase em Destaque -->
+            <div class="space-y-2">
+                <span class="inline-block bg-brand-lightbrown/80 backdrop-blur-md px-4 py-1 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase text-amber-100 border border-amber-300/30">
+                    <i class="fa-solid fa-paw mr-1"></i> Banho & Tosa Especializada
+                </span>
+                <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-wide text-white drop-shadow-md">
+                    ESTÉTICA ANIMAL
+                </h2>
+                <p class="text-lg md:text-2xl font-light text-amber-100 italic max-w-2xl mx-auto pt-2 drop-shadow">
+                    "O carinho, a dedicação e o cuidado estético que o seu melhor amigo merece todos os dias."
+                </p>
+            </div>
+
+            <!-- Ilustração visual dos vários cachorros juntos -->
+            <div class="pt-6 flex justify-center items-center space-x-3 text-amber-200/80 text-sm md:text-base">
+                <span><i class="fa-solid fa-dog"></i> Porte Pequeno</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-dog text-lg"></i> Porte Médio</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-dog text-2xl"></i> Porte Grande</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 flex-grow">
+
+        <!-- SEÇÃO 1: EXPLICAÇÃO DOS SERVIÇOS -->
+        <section id="servicos" class="scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="font-display text-3xl font-bold text-brand-darkbrown">Nossos Serviços Especializados</h2>
+                <div class="w-20 h-1 bg-brand-brown mx-auto my-3 rounded-full"></div>
+                <p class="text-gray-600">Conheça cada um dos tratamentos oferecidos em nossa estética animal. Utilizamos produtos de linha profissional, veganos e hipoalergênicos para garantir a saúde da pele e dos pelos do seu pet.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Serviço 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-shower"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Banho Completo</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Inclui pré-lavagem com shampoo de limpeza profunda, lavagem com shampoo específico para a pelagem, condicionamento, secagem profissional com soprador e secador silencioso, escovação e finalização com colônia suave.
+                    </p>
+                </div>
+
+                <!-- Serviço 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Tosa Higiênica</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Manutenção essencial da higiene do cão. Consiste na aparagem dos pelos da região genital, perianal, barriga e almofadas patares (coxins), prevenindo o acúmulo de sujeiras e sujeição a fungos.
+                    </p>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-cut"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Tosa Geral / Máquina</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Corte padronizado com máquina respeitando a anatomia do cão e a altura desejada pelo tutor. Ideal para raças de pelagem longa em épocas quentes ou para facilidade na manutenção do dia a dia.
+                    </p>
+                </div>
+
+                <!-- Serviço 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Tosa Tesoura / Tosa Bebê</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Trabalho artesanal feito exclusivamente na tesoura. Mantém a pelagem fofinha, arredondada e com aspecto filhote. Indicado para raças como Poodle, Shih Tzu, Lhasa Apso e Spitz Alemão.
+                    </p>
+                </div>
+
+                <!-- Serviço 5 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-spa"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Hidratação & Restauração</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Tratamento profundo com máscaras nutritivas de óleos naturais (Argan, Macadâmia, Queratina). Restaura a maciez, elimina o frizz, desembaraça nós e devolve o brilho aos pelos ressecados.
+                    </p>
+                </div>
+
+                <!-- Serviço 6 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-brown/10 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 text-brand-brown rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-brand-darkbrown mb-2">Cuidados Especiais (Cortar Unhas / Ouvidos)</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Incluso em todos os banhos: corte seguro e lixamento das unhas, limpeza higienizadora dos condutos auditivos para prevenir otites e escovação dental com creme dental próprio para pets.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: TABELA DE PREÇOS POR SERVIÇO AVULSO -->
+        <section id="precos" class="scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-brand-brown font-semibold text-sm uppercase tracking-wider">Transparência & Qualidade</span>
+                <h2 class="font-display text-3xl font-bold text-brand-darkbrown mt-1">Tabela de Preços por Serviço Avulso</h2>
+                <div class="w-20 h-1 bg-brand-brown mx-auto my-3 rounded-full"></div>
+                <p class="text-gray-600 text-sm">Valores divididos pelo porte do pet. Para pelagens com nós excessivos, pode haver taxa adicional de desembolo.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-brand-brown text-white font-display text-sm md:text-base">
+                                <th class="py-4 px-6">Serviço / Categoria</th>
+                                <th class="py-4 px-4 text-center">Porte Pequeno<br><span class="text-xs font-normal text-amber-200">(Até 10kg)</span></th>
+                                <th class="py-4 px-4 text-center">Porte Médio<br><span class="text-xs font-normal text-amber-200">(10kg a 25kg)</span></th>
+                                <th class="py-4 px-4 text-center">Porte Grande<br><span class="text-xs font-normal text-amber-200">(Acima de 25kg)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm md:text-base">
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-shower text-brand-lightbrown"></i> Banho Simples (Pêlo Curtinho)
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Inclui corte de unhas e limpeza de ouvidos</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 50,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 70,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 95,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-soap text-brand-lightbrown"></i> Banho Pelagem Longa / Densa
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Shampoo nutritivo + secagem especial</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 65,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 85,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 115,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-scissors text-brand-lightbrown"></i> Banho + Tosa Higiênica
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Banho completo + higiene íntima e patas</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 75,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 95,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 130,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-cut text-brand-lightbrown"></i> Banho + Tosa Completa (Máquina)
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Banho + tosa padrão de raça ou baixa</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 90,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 120,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 160,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-wand-magic-sparkles text-brand-lightbrown"></i> Banho + Tosa na Tesoura / Bebê
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Trabalho manual exclusivo e acabamento fino</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 120,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 150,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 200,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition bg-amber-50/30">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-spa text-brand-lightbrown"></i> Adicional: Hidratação Profunda
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-normal block">Máscara de tratamento pré/pós banho</span>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-brand-brown">+ R$ 25,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-brand-brown">+ R$ 35,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-brand-brown">+ R$ 45,00</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50/50 transition">
+                                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-tooth text-brand-lightbrown"></i> Escovação Dental + Flúor Pet
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 15,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 15,00</td>
+                                <td class="py-4 px-4 text-center font-bold text-gray-800">R$ 15,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: PLANO MENSAL (ASSINATURA) -->
+        <section id="planos" class="scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-amber-100 text-brand-brown font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Economia & Praticidade</span>
+                <h2 class="font-display text-3xl font-bold text-brand-darkbrown mt-2">Planos Mensais de Estética</h2>
+                <div class="w-20 h-1 bg-brand-brown mx-auto my-3 rounded-full"></div>
+                <p class="text-gray-600">Garanta seu pet sempre cheiroso, limpo e protegido. Os planos mensais garantem prioridade na agenda e descontos de até 25%!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Plano Bronze -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-2 border-gray-100 flex flex-col justify-between hover:border-amber-700 transition relative print-card">
+                    <div>
+                        <div class="text-center pb-6 border-b border-gray-100">
+                            <span class="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-3 py-1 rounded-full">Plano Quinzenal</span>
+                            <h3 class="font-display text-2xl font-bold text-brand-darkbrown mt-3">PLANO BRONZE</h3>
+                            <p class="text-xs text-gray-500 mt-1">Ideal para cães de pelagem curta</p>
+                            <div class="mt-4">
+                                <span class="text-sm font-semibold text-gray-500">A partir de</span>
+                                <div class="text-4xl font-extrabold text-brand-darkbrown">R$ 90<span class="text-lg text-gray-500 font-normal">/mês</span></div>
+                                <span class="text-xs text-emerald-600 font-medium">Economia de ~15%</span>
+                            </div>
+                        </div>
+                        <ul class="py-6 space-y-3 text-sm text-gray-700">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>2 Banhos Completos</strong> por mês</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Corte de Unhas & Limpeza de Ouvidos</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Perfumaria e Laço/Gravata</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i class="fa-solid fa-xmark text-gray-300 text-base"></i>
+                                <span>Tosa Higiênica Inclusa</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#simulador" class="w-full py-3 bg-gray-100 hover:bg-brand-brown hover:text-white text-brand-darkbrown font-bold rounded-xl text-center transition">Assinar Plano Bronze</a>
+                </div>
+
+                <!-- Plano Prata (Destaque) -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-brand-brown flex flex-col justify-between transform md:-translate-y-2 relative print-card">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-brown text-white text-xs font-bold uppercase px-4 py-1 rounded-full shadow">
+                        <i class="fa-solid fa-star text-amber-300"></i> Mais Popular
+                    </div>
+                    <div>
+                        <div class="text-center pb-6 border-b border-gray-100">
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand-brown bg-amber-100 px-3 py-1 rounded-full">Plano Semanal</span>
+                            <h3 class="font-display text-2xl font-bold text-brand-darkbrown mt-3">PLANO PRATA</h3>
+                            <p class="text-xs text-gray-500 mt-1">Higiene completa e frequente</p>
+                            <div class="mt-4">
+                                <span class="text-sm font-semibold text-gray-500">A partir de</span>
+                                <div class="text-4xl font-extrabold text-brand-brown">R$ 170<span class="text-lg text-gray-500 font-normal">/mês</span></div>
+                                <span class="text-xs text-emerald-600 font-medium">Economia de ~20%</span>
+                            </div>
+                        </div>
+                        <ul class="py-6 space-y-3 text-sm text-gray-700">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>4 Banhos Completos</strong> (1 por semana)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>1 Tosa Higiênica</strong> por mês</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Corte de Unhas & Ouvidos inclusos</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Escovação Dental quinzenal</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#simulador" class="w-full py-3 bg-brand-brown hover:bg-brand-darkbrown text-white font-bold rounded-xl text-center transition shadow-md">Assinar Plano Prata</a>
+                </div>
+
+                <!-- Plano Gold VIP -->
+                <div class="bg-gradient-to-b from-amber-50 to-white rounded-3xl p-8 shadow-md border-2 border-amber-300 flex flex-col justify-between hover:border-amber-500 transition relative print-card">
+                    <div>
+                        <div class="text-center pb-6 border-b border-amber-100">
+                            <span class="text-xs font-bold uppercase tracking-widest text-amber-900 bg-amber-200 px-3 py-1 rounded-full"><i class="fa-solid fa-crown text-amber-600"></i> VIP Tratamento de Luxo</span>
+                            <h3 class="font-display text-2xl font-bold text-brand-darkbrown mt-3">PLANO GOLD VIP</h3>
+                            <p class="text-xs text-gray-500 mt-1">Cuidado completo e pelagem perfeita</p>
+                            <div class="mt-4">
+                                <span class="text-sm font-semibold text-gray-500">A partir de</span>
+                                <div class="text-4xl font-extrabold text-amber-800">R$ 250<span class="text-lg text-gray-500 font-normal">/mês</span></div>
+                                <span class="text-xs text-emerald-600 font-medium">Economia de ~25%</span>
+                            </div>
+                        </div>
+                        <ul class="py-6 space-y-3 text-sm text-gray-700">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>4 Banhos Completos</strong> no mês</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>1 Tosa Completa</strong> (Máquina ou Tesoura)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>1 Hidratação Profunda</strong> por mês</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Escovação Dental semanal inclusa</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span>Prioridade na agenda & Brinde mensal</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#simulador" class="w-full py-3 bg-amber-800 hover:bg-brand-darkbrown text-white font-bold rounded-xl text-center transition shadow-md">Assinar Plano Gold VIP</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: SIMULADOR E ORÇAMENTO VIA WHATSAPP -->
+        <section id="simulador" class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-brand-brown/10 no-print scroll-mt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <span class="text-xs font-bold text-brand-brown uppercase tracking-wider bg-amber-100 px-3 py-1 rounded-full">Simulador Rápido</span>
+                    <h2 class="font-display text-3xl font-bold text-brand-darkbrown mt-2">Monte seu Orçamento</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Selecione o porte do seu cão e os serviços desejados para calcular a estimativa de valor e agendar direto pelo WhatsApp.</p>
+                    
+                    <form id="calcForm" class="mt-6 space-y-4">
+                        <!-- Nome do Pet -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome do Pet</label>
+                            <input type="text" id="petName" placeholder="Ex: Mel, Thor, Bob..." class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown">
+                        </div>
+
+                        <!-- Porte do Pet -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Porte do Cachorro</label>
+                            <select id="petSize" onchange="calculateTotal()" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown bg-white">
+                                <option value="pequeno">Porte Pequeno (até 10kg)</option>
+                                <option value="medio">Porte Médio (10kg a 25kg)</option>
+                                <option value="grande">Porte Grande (acima de 25kg)</option>
+                            </select>
+                        </div>
+
+                        <!-- Modalidade -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Tipo de Atendimento</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="border rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-amber-50">
+                                    <input type="radio" name="planType" value="avulso" checked onclick="togglePlanType('avulso')" class="text-brand-brown focus:ring-brand-brown">
+                                    <span class="text-sm font-semibold">Serviço Avulso</span>
+                                </label>
+                                <label class="border rounded-xl p-3 flex items-center space-x-2 cursor-pointer hover:bg-amber-50">
+                                    <input type="radio" name="planType" value="mensal" onclick="togglePlanType('mensal')" class="text-brand-brown focus:ring-brand-brown">
+                                    <span class="text-sm font-semibold">Plano Mensal</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Opções Avulsas -->
+                        <div id="avulsoOptions" class="space-y-2 pt-2">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Selecione o Serviço Avulso:</label>
+                            <select id="avulsoService" onchange="calculateTotal()" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown bg-white">
+                                <option value="banho_simples">Banho Pêlo Curto</option>
+                                <option value="banho_longo">Banho Pêlo Longo</option>
+                                <option value="banho_higienica">Banho + Tosa Higiênica</option>
+                                <option value="banho_tosa_maquina">Banho + Tosa Geral (Máquina)</option>
+                                <option value="banho_tosa_tesoura">Banho + Tosa na Tesoura/Bebê</option>
+                            </select>
+
+                            <div class="pt-2">
+                                <label class="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" id="addHydration" onchange="calculateTotal()" class="rounded text-brand-brown focus:ring-brand-brown">
+                                    <span>Adicionar Hidratação Profunda</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer mt-1">
+                                    <input type="checkbox" id="addTeeth" onchange="calculateTotal()" class="rounded text-brand-brown focus:ring-brand-brown">
+                                    <span>Adicionar Escovação Dental (+ R$ 15,00)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Opções Mensais -->
+                        <div id="mensalOptions" class="space-y-2 pt-2 hidden">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Selecione o Plano Mensal:</label>
+                            <select id="mensalPlan" onchange="calculateTotal()" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown bg-white">
+                                <option value="bronze">Plano Bronze (2 Banhos/mês)</option>
+                                <option value="prata">Plano Prata (4 Banhos + 1 Tosa Higiênica)</option>
+                                <option value="gold">Plano Gold VIP (4 Banhos + Tosa + Hidratação)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Resumo do Orçamento -->
+                <div class="bg-brand-beige rounded-2xl p-6 border-2 border-brand-brown/20 flex flex-col justify-between h-full space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 pb-4 border-b border-brand-brown/10">
+                            <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain rounded-full">
+                            <div>
+                                <h3 class="font-display font-bold text-brand-darkbrown">Estética Animal - Resumo</h3>
+                                <p class="text-xs text-gray-500">Orçamento prévio estimado</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Porte:</span>
+                                <span id="summarySize" class="font-bold text-brand-darkbrown">Porte Pequeno</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Serviço/Plano:</span>
+                                <span id="summaryService" class="font-bold text-brand-darkbrown">Banho Pêlo Curto</span>
+                            </div>
+                            <div id="summaryExtrasRow" class="flex justify-between text-xs text-amber-900 hidden">
+                                <span>Opcionais:</span>
+                                <span id="summaryExtras">-</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-brand-brown/10 flex justify-between items-baseline">
+                            <span class="text-base font-bold text-gray-800">Valor Estimado:</span>
+                            <span id="totalPrice" class="font-display text-3xl font-extrabold text-brand-brown">R$ 50,00</span>
+                        </div>
+                    </div>
+
+                    <button onclick="sendWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Agendar pelo WhatsApp
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-darkbrown text-amber-100 py-10 border-t-4 border-brand-brown">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                    <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain bg-white rounded-full p-1">
+                    <span class="font-display font-bold text-lg text-white">ESTÉTICA ANIMAL</span>
+                </div>
+                <p class="text-amber-200/80 text-xs leading-relaxed">
+                    A melhor experiência em banho, tosa e estética canina da região. Ambiente climatizado, higienizado e profissionais apaixonados por animais.
+                </p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="font-display font-bold text-white text-base">Horário de Atendimento</h4>
+                <p class="text-xs text-amber-200/80"><i class="fa-regular fa-clock text-amber-400 mr-2"></i>Segunda a Sexta: 08h às 18h</p>
+                <p class="text-xs text-amber-200/80"><i class="fa-regular fa-clock text-amber-400 mr-2"></i>Sábado: 08h às 19h</p>
+                <p class="text-xs text-amber-200/80"><i class="fa-solid fa-ban text-amber-400 mr-2"></i>Domingo e Feriados: Fechado</p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="font-display font-bold text-white text-base">Contato & Localização</h4>
+                <a href="https://wa.me/554195428051" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-200/80 hover:text-white transition inline-flex items-center"><i class="fa-brands fa-whatsapp text-amber-400 mr-2"></i>+55 (41) 9542-8051</a>
+                <p class="text-xs text-amber-200/80"><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i>Rua dos Pets, Nº 123 - Bairro Central</p>
+                <p class="text-xs text-amber-200/80"><i class="fa-brands fa-instagram text-amber-400 mr-2"></i>@esteticaanimal_pet</p>
+            </div>
+
+        </div>
+        <div class="text-center text-xs text-amber-300/60 mt-8 pt-4 border-t border-amber-900/50">
+            © 2026 Estética Animal. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
