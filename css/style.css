@@ -1,7 +1,7 @@
 .hero-bg {
     background-color: #3D2413;
     background-image: linear-gradient(135deg, rgba(45, 27, 16, 0.75) 0%, rgba(92, 58, 33, 0.55) 50%, rgba(30, 15, 8, 0.8) 100%),
-                      url("../imagem/Captura de tela 2026-09-16 150627.png");
+                      url("../imagem/hero.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

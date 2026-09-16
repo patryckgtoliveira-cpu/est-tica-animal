@@ -1,125 +1,222 @@
-const prices = {
-    pequeno: {
-        banho_simples: 50,
-        banho_longo: 65,
-        banho_higienica: 75,
-        banho_tosa_maquina: 90,
-        banho_tosa_tesoura: 120,
-        hidratacao: 25,
-        bronze: 90,
-        prata: 170,
-        gold: 250
-    },
-    medio: {
-        banho_simples: 70,
-        banho_longo: 85,
-        banho_higienica: 95,
-        banho_tosa_maquina: 120,
-        banho_tosa_tesoura: 150,
-        hidratacao: 35,
-        bronze: 130,
-        prata: 220,
-        gold: 320
-    },
-    grande: {
-        banho_simples: 95,
-        banho_longo: 115,
-        banho_higienica: 130,
-        banho_tosa_maquina: 160,
-        banho_tosa_tesoura: 200,
-        hidratacao: 45,
-        bronze: 180,
-        prata: 310,
-        gold: 440
-    }
+// ==========================================================
+// DADOS: única fonte de preços e serviços do site
+// ==========================================================
+
+const WHATSAPP_PHONE = "554195428051";
+
+const SIZES = {
+    pequeno: "Porte Pequeno (até 10kg)",
+    medio: "Porte Médio (10kg a 25kg)",
+    grande: "Porte Grande (acima de 25kg)"
 };
 
-const serviceNames = {
-    banho_simples: "Banho Pêlo Curto",
-    banho_longo: "Banho Pêlo Longo",
-    banho_higienica: "Banho + Tosa Higiênica",
-    banho_tosa_maquina: "Banho + Tosa Geral (Máquina)",
-    banho_tosa_tesoura: "Banho + Tosa Tesoura/Bebê",
-    bronze: "Plano Mensal Bronze",
-    prata: "Plano Mensal Prata",
-    gold: "Plano Mensal Gold VIP"
-};
-
-function togglePlanType(type) {
-    if (type === 'avulso') {
-        document.getElementById('avulsoOptions').classList.remove('hidden');
-        document.getElementById('mensalOptions').classList.add('hidden');
-    } else {
-        document.getElementById('avulsoOptions').classList.add('hidden');
-        document.getElementById('mensalOptions').classList.remove('hidden');
+// Serviços avulsos (tabela de preços + simulador)
+const SERVICES = [
+    {
+        key: "banho_simples",
+        name: "Banho Pêlo Curto",
+        tableName: "Banho Simples (Pêlo Curtinho)",
+        description: "Inclui corte de unhas e limpeza de ouvidos",
+        icon: "fa-shower",
+        prices: { pequeno: 50, medio: 70, grande: 95 }
+    },
+    {
+        key: "banho_longo",
+        name: "Banho Pêlo Longo",
+        tableName: "Banho Pelagem Longa / Densa",
+        description: "Shampoo nutritivo + secagem especial",
+        icon: "fa-soap",
+        prices: { pequeno: 65, medio: 85, grande: 115 }
+    },
+    {
+        key: "banho_higienica",
+        name: "Banho + Tosa Higiênica",
+        tableName: "Banho + Tosa Higiênica",
+        description: "Banho completo + higiene íntima e patas",
+        icon: "fa-scissors",
+        prices: { pequeno: 75, medio: 95, grande: 130 }
+    },
+    {
+        key: "banho_tosa_maquina",
+        name: "Banho + Tosa Geral (Máquina)",
+        tableName: "Banho + Tosa Completa (Máquina)",
+        description: "Banho + tosa padrão de raça ou baixa",
+        icon: "fa-cut",
+        prices: { pequeno: 90, medio: 120, grande: 160 }
+    },
+    {
+        key: "banho_tosa_tesoura",
+        name: "Banho + Tosa na Tesoura/Bebê",
+        tableName: "Banho + Tosa na Tesoura / Bebê",
+        description: "Trabalho manual exclusivo e acabamento fino",
+        icon: "fa-wand-magic-sparkles",
+        prices: { pequeno: 120, medio: 150, grande: 200 }
     }
-    calculateTotal();
+];
+
+// Opcionais adicionados ao serviço avulso
+const EXTRAS = [
+    {
+        key: "hidratacao",
+        name: "Hidratação Profunda",
+        tableName: "Adicional: Hidratação Profunda",
+        description: "Máscara de tratamento pré/pós banho",
+        icon: "fa-spa",
+        highlight: true,
+        prices: { pequeno: 25, medio: 35, grande: 45 }
+    },
+    {
+        key: "escovacao",
+        name: "Escovação Dental",
+        tableName: "Escovação Dental + Flúor Pet",
+        icon: "fa-tooth",
+        prices: { pequeno: 15, medio: 15, grande: 15 }
+    }
+];
+
+const PLANS = [
+    { key: "bronze", name: "Plano Mensal Bronze", option: "Plano Bronze (2 Banhos/mês)", prices: { pequeno: 90, medio: 130, grande: 180 } },
+    { key: "prata", name: "Plano Mensal Prata", option: "Plano Prata (4 Banhos + 1 Tosa Higiênica)", prices: { pequeno: 170, medio: 220, grande: 310 } },
+    { key: "gold", name: "Plano Mensal Gold VIP", option: "Plano Gold VIP (4 Banhos + Tosa + Hidratação)", prices: { pequeno: 250, medio: 320, grande: 440 } }
+];
+
+// ==========================================================
+// UTILITÁRIOS
+// ==========================================================
+
+const $ = (id) => document.getElementById(id);
+
+const formatPrice = (value) =>
+    value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+const findByKey = (list, key) => list.find((item) => item.key === key);
+
+const toOptions = (items, getLabel) =>
+    items.map((item) => `<option value="${item.key}">${getLabel(item)}</option>`).join("");
+
+// ==========================================================
+// RENDERIZAÇÃO A PARTIR DOS DADOS
+// ==========================================================
+
+function renderPriceTable() {
+    const rows = [...SERVICES, ...EXTRAS].map((item) => {
+        const isExtra = EXTRAS.includes(item);
+        const prefix = item.highlight ? "+ " : "";
+        const priceClass = item.highlight ? "text-brand-brown" : "text-gray-800";
+        const priceCells = Object.keys(SIZES)
+            .map((size) => `<td class="py-4 px-4 text-center font-bold ${priceClass}">${prefix}${formatPrice(item.prices[size])}</td>`)
+            .join("");
+        const description = item.description
+            ? `<span class="text-xs text-gray-500 font-normal block">${item.description}</span>`
+            : "";
+
+        return `
+            <tr class="hover:bg-amber-50/50 transition${isExtra && item.highlight ? " bg-amber-50/30" : ""}">
+                <td class="py-4 px-6 font-semibold text-brand-darkbrown">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid ${item.icon} text-brand-lightbrown"></i> ${item.tableName}
+                    </div>
+                    ${description}
+                </td>
+                ${priceCells}
+            </tr>`;
+    });
+
+    $("priceTableBody").innerHTML = rows.join("");
 }
 
-function calculateTotal() {
-    const size = document.getElementById('petSize').value;
-    const isAvulso = document.querySelector('input[name="planType"]:checked').value === 'avulso';
-    let total = 0;
-    let serviceText = "";
-    let extras = [];
+function renderPlanPrices() {
+    document.querySelectorAll("[data-plan-price]").forEach((el) => {
+        const plan = findByKey(PLANS, el.dataset.planPrice);
+        el.textContent = `R$ ${plan.prices.pequeno}`;
+    });
+}
 
-    const sizeLabel = size === 'pequeno' ? 'Porte Pequeno (até 10kg)' : (size === 'medio' ? 'Porte Médio (10kg a 25kg)' : 'Porte Grande (> 25kg)');
+function renderSimulatorOptions() {
+    $("petSize").innerHTML = toOptions(Object.keys(SIZES).map((key) => ({ key })), ({ key }) => SIZES[key]);
+    $("avulsoService").innerHTML = toOptions(SERVICES, (service) => service.name);
+    $("mensalPlan").innerHTML = toOptions(PLANS, (plan) => plan.option);
 
-    if (isAvulso) {
-        const serviceKey = document.getElementById('avulsoService').value;
-        total += prices[size][serviceKey];
-        serviceText = serviceNames[serviceKey];
+    const teeth = findByKey(EXTRAS, "escovacao");
+    $("addTeethLabel").textContent = `Adicionar Escovação Dental (+ ${formatPrice(teeth.prices.pequeno)})`;
+}
 
-        if (document.getElementById('addHydration').checked) {
-            total += prices[size].hidratacao;
-            extras.push("Hidratação Profunda");
-        }
-        if (document.getElementById('addTeeth').checked) {
-            total += 15;
-            extras.push("Escovação Dental");
-        }
-    } else {
-        const planKey = document.getElementById('mensalPlan').value;
-        total += prices[size][planKey];
-        serviceText = serviceNames[planKey];
+// ==========================================================
+// SIMULADOR
+// ==========================================================
+
+function getQuote() {
+    const size = $("petSize").value;
+    const isAvulso = document.querySelector('input[name="planType"]:checked').value === "avulso";
+
+    if (!isAvulso) {
+        const plan = findByKey(PLANS, $("mensalPlan").value);
+        return { size, serviceName: plan.name, extras: [], total: plan.prices[size] };
     }
 
-    document.getElementById('summarySize').innerText = sizeLabel;
-    document.getElementById('summaryService').innerText = serviceText;
+    const service = findByKey(SERVICES, $("avulsoService").value);
+    const selectedExtras = [
+        $("addHydration").checked && findByKey(EXTRAS, "hidratacao"),
+        $("addTeeth").checked && findByKey(EXTRAS, "escovacao")
+    ].filter(Boolean);
 
-    const extrasRow = document.getElementById('summaryExtrasRow');
-    if (extras.length > 0) {
-        extrasRow.classList.remove('hidden');
-        document.getElementById('summaryExtras').innerText = extras.join(', ');
-    } else {
-        extrasRow.classList.add('hidden');
-    }
+    const total = selectedExtras.reduce((sum, extra) => sum + extra.prices[size], service.prices[size]);
 
-    document.getElementById('totalPrice').innerText = `R$ ${total},00`;
+    return { size, serviceName: service.name, extras: selectedExtras.map((extra) => extra.name), total };
+}
+
+function updateSummary() {
+    const quote = getQuote();
+
+    $("summarySize").textContent = SIZES[quote.size];
+    $("summaryService").textContent = quote.serviceName;
+    $("summaryExtras").textContent = quote.extras.join(", ");
+    $("summaryExtrasRow").classList.toggle("hidden", quote.extras.length === 0);
+    $("totalPrice").textContent = formatPrice(quote.total);
+}
+
+function togglePlanType(type) {
+    $("avulsoOptions").classList.toggle("hidden", type !== "avulso");
+    $("mensalOptions").classList.toggle("hidden", type !== "mensal");
 }
 
 function sendWhatsApp() {
-    const petName = document.getElementById('petName').value || "Meu Pet";
-    const sizeText = document.getElementById('summarySize').innerText;
-    const serviceText = document.getElementById('summaryService').innerText;
-    const totalPrice = document.getElementById('totalPrice').innerText;
+    const quote = getQuote();
+    const petName = $("petName").value.trim() || "Meu Pet";
 
-    let message = `Olá, Estética Animal! Gostaria de agendar um horário.\n\n`;
-    message += `*Nome do Pet:* ${petName}\n`;
-    message += `*Porte:* ${sizeText}\n`;
-    message += `*Serviço Escolhido:* ${serviceText}\n`;
-
-    const extrasRow = document.getElementById('summaryExtrasRow');
-    if (!extrasRow.classList.contains('hidden')) {
-        message += `*Opcionais:* ${document.getElementById('summaryExtras').innerText}\n`;
+    const lines = [
+        "Olá, Estética Animal! Gostaria de agendar um horário.",
+        "",
+        `*Nome do Pet:* ${petName}`,
+        `*Porte:* ${SIZES[quote.size]}`,
+        `*Serviço Escolhido:* ${quote.serviceName}`
+    ];
+    if (quote.extras.length > 0) {
+        lines.push(`*Opcionais:* ${quote.extras.join(", ")}`);
     }
+    lines.push(`*Valor Estimado:* ${formatPrice(quote.total)}`, "", "Como podemos verificar a disponibilidade da agenda?");
 
-    message += `*Valor Estimado:* ${totalPrice}\n\n`;
-    message += `Como podemos verificar a disponibilidade da agenda?`;
-
-    const phone = "554195428051";
-    const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(lines.join("\n"))}`;
+    window.open(url, "_blank", "noopener");
 }
 
-calculateTotal();
+// ==========================================================
+// INICIALIZAÇÃO
+// ==========================================================
+
+function init() {
+    renderPriceTable();
+    renderPlanPrices();
+    renderSimulatorOptions();
+
+    $("calcForm").addEventListener("change", updateSummary);
+    $("calcForm").addEventListener("submit", (event) => event.preventDefault());
+    document.querySelectorAll('input[name="planType"]').forEach((radio) => {
+        radio.addEventListener("change", () => togglePlanType(radio.value));
+    });
+    $("whatsappButton").addEventListener("click", sendWhatsApp);
+
+    updateSummary();
+}
+
+init();
