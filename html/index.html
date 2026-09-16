@@ -4,50 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estética Animal - Tabela de Preços e Serviços</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Configuração e framework CSS -->
+    <script src="../javascript/tailwind-config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            brown: '#5C3A21',
-                            darkbrown: '#3D2413',
-                            lightbrown: '#8C5A33',
-                            beige: '#FDF8F3',
-                            gold: '#D4AF37',
-                            accent: '#E07A5F'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        display: ['Fredoka', 'cursive']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .hero-bg {
-            background-color: #3D2413;
-            background-image: linear-gradient(135deg, rgba(45, 27, 16, 0.75) 0%, rgba(92, 58, 33, 0.55) 50%, rgba(30, 15, 8, 0.8) 100%),
-                              url("Captura de tela 2026-09-16 150627.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; color: black !important; }
-            .print-card { break-inside: avoid; border: 1px solid #ccc !important; shadow: none !important; }
-        }
-    </style>
 </head>
 <body class="bg-brand-beige text-gray-800 font-sans antialiased min-h-screen flex flex-col">
 
@@ -55,7 +19,7 @@
     <header class="bg-white shadow-md sticky top-0 z-50 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <img src="Captura de tela 2026-09-16 150241.png" alt="Estética Animal Logo" class="h-12 w-12 object-contain border border-amber-900/10 rounded-full p-1 bg-white">
+                <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Estética Animal Logo" class="h-12 w-12 object-contain border border-amber-900/10 rounded-full p-1 bg-white">
                 <div>
                     <h1 class="font-display font-bold text-xl text-brand-darkbrown leading-tight">ESTÉTICA ANIMAL</h1>
                     <p class="text-xs text-brand-lightbrown font-medium">Cuidado, Carinho & Beleza Pet</p>
@@ -85,7 +49,7 @@
             
             <!-- Logo Central Replicado -->
             <div class="mx-auto w-32 h-32 md:w-40 md:h-40 bg-white rounded-full p-3 shadow-2xl border-4 border-brand-lightbrown flex items-center justify-center transform hover:scale-105 transition duration-300">
-                <img src="Captura de tela 2026-09-16 150241.png" alt="Estética Animal" class="w-full h-full object-contain rounded-full">
+                <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Estética Animal" class="w-full h-full object-contain rounded-full">
             </div>
 
             <!-- Título e Frase em Destaque -->
@@ -499,7 +463,7 @@
                 <div class="bg-brand-beige rounded-2xl p-6 border-2 border-brand-brown/20 flex flex-col justify-between h-full space-y-6">
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3 pb-4 border-b border-brand-brown/10">
-                            <img src="Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain rounded-full">
+                            <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain rounded-full">
                             <div>
                                 <h3 class="font-display font-bold text-brand-darkbrown">Estética Animal - Resumo</h3>
                                 <p class="text-xs text-gray-500">Orçamento prévio estimado</p>
@@ -542,7 +506,7 @@
             
             <div class="space-y-3">
                 <div class="flex items-center space-x-3">
-                    <img src="Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain bg-white rounded-full p-1">
+                    <img src="../imagem/Captura de tela 2026-09-16 150241.png" alt="Logo" class="h-10 w-10 object-contain bg-white rounded-full p-1">
                     <span class="font-display font-bold text-lg text-white">ESTÉTICA ANIMAL</span>
                 </div>
                 <p class="text-amber-200/80 text-xs leading-relaxed">
@@ -570,134 +534,6 @@
         </div>
     </footer>
 
-    <!-- LÓGICA DO SIMULADOR JS -->
-    <script>
-        const prices = {
-            pequeno: {
-                banho_simples: 50,
-                banho_longo: 65,
-                banho_higienica: 75,
-                banho_tosa_maquina: 90,
-                banho_tosa_tesoura: 120,
-                hidratacao: 25,
-                bronze: 90,
-                prata: 170,
-                gold: 250
-            },
-            medio: {
-                banho_simples: 70,
-                banho_longo: 85,
-                banho_higienica: 95,
-                banho_tosa_maquina: 120,
-                banho_tosa_tesoura: 150,
-                hidratacao: 35,
-                bronze: 130,
-                prata: 220,
-                gold: 320
-            },
-            grande: {
-                banho_simples: 95,
-                banho_longo: 115,
-                banho_higienica: 130,
-                banho_tosa_maquina: 160,
-                banho_tosa_tesoura: 200,
-                hidratacao: 45,
-                bronze: 180,
-                prata: 310,
-                gold: 440
-            }
-        };
-
-        const serviceNames = {
-            banho_simples: "Banho Pêlo Curto",
-            banho_longo: "Banho Pêlo Longo",
-            banho_higienica: "Banho + Tosa Higiênica",
-            banho_tosa_maquina: "Banho + Tosa Geral (Máquina)",
-            banho_tosa_tesoura: "Banho + Tosa Tesoura/Bebê",
-            bronze: "Plano Mensal Bronze",
-            prata: "Plano Mensal Prata",
-            gold: "Plano Mensal Gold VIP"
-        };
-
-        function togglePlanType(type) {
-            if (type === 'avulso') {
-                document.getElementById('avulsoOptions').classList.remove('hidden');
-                document.getElementById('mensalOptions').classList.add('hidden');
-            } else {
-                document.getElementById('avulsoOptions').classList.add('hidden');
-                document.getElementById('mensalOptions').classList.remove('hidden');
-            }
-            calculateTotal();
-        }
-
-        function calculateTotal() {
-            const size = document.getElementById('petSize').value;
-            const isAvulso = document.querySelector('input[name="planType"]:checked').value === 'avulso';
-            let total = 0;
-            let serviceText = "";
-            let extras = [];
-
-            const sizeLabel = size === 'pequeno' ? 'Porte Pequeno (até 10kg)' : (size === 'medio' ? 'Porte Médio (10kg a 25kg)' : 'Porte Grande (> 25kg)');
-
-            if (isAvulso) {
-                const serviceKey = document.getElementById('avulsoService').value;
-                total += prices[size][serviceKey];
-                serviceText = serviceNames[serviceKey];
-
-                if (document.getElementById('addHydration').checked) {
-                    total += prices[size].hidratacao;
-                    extras.push("Hidratação Profunda");
-                }
-                if (document.getElementById('addTeeth').checked) {
-                    total += 15;
-                    extras.push("Escovação Dental");
-                }
-            } else {
-                const planKey = document.getElementById('mensalPlan').value;
-                total += prices[size][planKey];
-                serviceText = serviceNames[planKey];
-            }
-
-            document.getElementById('summarySize').innerText = sizeLabel;
-            document.getElementById('summaryService').innerText = serviceText;
-            
-            const extrasRow = document.getElementById('summaryExtrasRow');
-            if (extras.length > 0) {
-                extrasRow.classList.remove('hidden');
-                document.getElementById('summaryExtras').innerText = extras.join(', ');
-            } else {
-                extrasRow.classList.add('hidden');
-            }
-
-            document.getElementById('totalPrice').innerText = `R$ ${total},00`;
-        }
-
-        function sendWhatsApp() {
-            const petName = document.getElementById('petName').value || "Meu Pet";
-            const sizeText = document.getElementById('summarySize').innerText;
-            const serviceText = document.getElementById('summaryService').innerText;
-            const totalPrice = document.getElementById('totalPrice').innerText;
-            
-            let message = `Olá, Estética Animal! Gostaria de agendar um horário.\n\n`;
-            message += `*Nome do Pet:* ${petName}\n`;
-            message += `*Porte:* ${sizeText}\n`;
-            message += `*Serviço Escolhido:* ${serviceText}\n`;
-            
-            const extrasRow = document.getElementById('summaryExtrasRow');
-            if (!extrasRow.classList.contains('hidden')) {
-                message += `*Opcionais:* ${document.getElementById('summaryExtras').innerText}\n`;
-            }
-            
-            message += `*Valor Estimado:* ${totalPrice}\n\n`;
-            message += `Como podemos verificar a disponibilidade da agenda?`;
-
-            const phone = "554195428051";
-            const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
-        // Inicializar cálculo na carga
-        calculateTotal();
-    </script>
+    <script src="../javascript/script.js"></script>
 </body>
 </html>
