@@ -334,6 +334,12 @@
                             <input type="text" id="petName" placeholder="Ex: Mel, Thor, Bob..." class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown">
                         </div>
 
+                        <!-- Raça do Pet (preenche o porte automaticamente) -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Raça do Cachorro</label>
+                            <select id="petBreed" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown bg-white"></select>
+                        </div>
+
                         <!-- Porte do Pet -->
                         <div>
                             <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Porte do Cachorro</label>
@@ -392,6 +398,10 @@
                         </div>
 
                         <div class="space-y-2 text-sm text-gray-700">
+                            <div id="summaryBreedRow" class="flex justify-between hidden">
+                                <span class="text-gray-500">Raça:</span>
+                                <span id="summaryBreed" class="font-bold text-brand-darkbrown text-right">-</span>
+                            </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-500">Porte:</span>
                                 <span id="summarySize" class="font-bold text-brand-darkbrown">Porte Pequeno</span>

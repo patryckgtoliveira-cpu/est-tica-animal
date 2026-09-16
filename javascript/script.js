@@ -193,7 +193,19 @@ function renderPlanPrices() {
     });
 }
 
+// Todas as raças numa lista única, em ordem alfabética
+const ALL_BREEDS = Object.entries(BREEDS)
+    .flatMap(([size, breeds]) => breeds.map((name) => ({ name, size })))
+    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+
+const OTHER_BREED = "Sem raça definida (SRD) / Outra";
+
 function renderSimulatorOptions() {
+    $("petBreed").innerHTML = [
+        `<option value="">Selecione a raça</option>`,
+        ...ALL_BREEDS.map((breed) => `<option value="${breed.name}">${breed.name}</option>`),
+        `<option value="${OTHER_BREED}">${OTHER_BREED}</option>`
+    ].join("");
     $("petSize").innerHTML = toOptions(Object.keys(SIZES).map((key) => ({ key })), ({ key }) => SIZES[key]);
     $("avulsoService").innerHTML = toOptions(SERVICES, (service) => service.name);
     $("mensalPlan").innerHTML = toOptions(PLANS, (plan) => plan.option);
@@ -226,8 +238,20 @@ function getQuote() {
     return { size, serviceName: service.name, extras: selectedExtras.map((extra) => extra.name), total };
 }
 
+// Ao escolher uma raça conhecida, ajusta o porte (o tutor ainda pode alterar)
+function selectBreed(breedName) {
+    const breed = ALL_BREEDS.find((item) => item.name === breedName);
+    if (breed) {
+        $("petSize").value = breed.size;
+    }
+}
+
 function updateSummary() {
     const quote = getQuote();
+    const breed = $("petBreed").value;
+
+    $("summaryBreed").textContent = breed;
+    $("summaryBreedRow").classList.toggle("hidden", breed === "");
 
     $("summarySize").textContent = SIZES[quote.size];
     $("summaryService").textContent = quote.serviceName;
@@ -248,10 +272,15 @@ function sendWhatsApp() {
     const lines = [
         "Olá, Estética Animal! Gostaria de agendar um horário.",
         "",
-        `*Nome do Pet:* ${petName}`,
+        `*Nome do Pet:* ${petName}`
+    ];
+    if ($("petBreed").value) {
+        lines.push(`*Raça:* ${$("petBreed").value}`);
+    }
+    lines.push(
         `*Porte:* ${SIZES[quote.size]}`,
         `*Serviço Escolhido:* ${quote.serviceName}`
-    ];
+    );
     if (quote.extras.length > 0) {
         lines.push(`*Opcionais:* ${quote.extras.join(", ")}`);
     }
@@ -271,6 +300,8 @@ function init() {
     renderPlanPrices();
     renderSimulatorOptions();
 
+    // Registrado antes do listener do formulário para o porte mudar antes do resumo
+    $("petBreed").addEventListener("change", (event) => selectBreed(event.target.value));
     $("calcForm").addEventListener("change", updateSummary);
     $("calcForm").addEventListener("submit", (event) => event.preventDefault());
     document.querySelectorAll('input[name="planType"]').forEach((radio) => {
