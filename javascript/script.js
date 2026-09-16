@@ -75,9 +75,9 @@ const EXTRAS = [
 ];
 
 const PLANS = [
-    { key: "bronze", name: "Plano Mensal Bronze", option: "Plano Bronze (2 Banhos/mês)", prices: { pequeno: 90, medio: 130, grande: 180 } },
-    { key: "prata", name: "Plano Mensal Prata", option: "Plano Prata (4 Banhos + 1 Tosa Higiênica)", prices: { pequeno: 170, medio: 220, grande: 310 } },
-    { key: "gold", name: "Plano Mensal Gold VIP", option: "Plano Gold VIP (4 Banhos + Tosa + Hidratação)", prices: { pequeno: 250, medio: 320, grande: 440 } }
+    { key: "bronze", name: "Plano Mensal Bronze", option: "Plano Bronze (2 Banhos + 1 Tosa Higiênica)", prices: { pequeno: 90, medio: 120, grande: 150 } },
+    { key: "prata", name: "Plano Mensal Prata", option: "Plano Prata (4 Banhos + 2 Tosas Higiênicas)", prices: { pequeno: 170, medio: 190, grande: 220 } },
+    { key: "gold", name: "Plano Mensal Gold VIP", option: "Plano Gold VIP (6 Banhos + 3 Tosas + 2 Hidratações)", prices: { pequeno: 320, medio: 350, grande: 400 } }
 ];
 
 // Raças por porte, pelo peso médio do cão adulto
@@ -195,6 +195,18 @@ function renderPlanPrices() {
     document.querySelectorAll("[data-plan-price]").forEach((el) => {
         const plan = findByKey(PLANS, el.dataset.planPrice);
         el.textContent = `R$ ${plan.prices.pequeno}`;
+    });
+
+    // Preço de cada porte abaixo do valor principal do card
+    document.querySelectorAll("[data-plan-sizes]").forEach((el) => {
+        const plan = findByKey(PLANS, el.dataset.planSizes);
+        el.innerHTML = Object.keys(SIZES)
+            .map((size) => `
+                <div class="bg-amber-50 rounded-lg py-1.5">
+                    <span class="block text-[10px] uppercase tracking-wide text-gray-500">${SIZES[size].split(" (")[0].replace("Porte ", "")}</span>
+                    <span class="font-bold text-brand-darkbrown">${formatPrice(plan.prices[size])}</span>
+                </div>`)
+            .join("");
     });
 }
 

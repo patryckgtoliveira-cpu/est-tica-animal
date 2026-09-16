@@ -36,8 +36,8 @@
     </header>
 
     <!-- BANNER PRINCIPAL -->
-    <section class="bg-white shadow-xl relative">
-        <img src="imagem/hero.jpg" alt="Estética Animal - Banho e Tosa" class="w-full max-w-7xl mx-auto block">
+    <section class="shadow-xl relative">
+        <img src="imagem/hero.jpg" alt="Estética Animal - Banho e Tosa" class="w-full block">
 
         <!-- Logo na frente do banner, centralizado na divisa com a faixa -->
         <div class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 z-10 w-24 h-24 md:w-36 md:h-36 bg-white rounded-full p-2 md:p-3 shadow-2xl border-4 border-brand-lightbrown flex items-center justify-center hover:scale-105 transition duration-300">
@@ -191,7 +191,7 @@
                 <span class="bg-amber-100 text-brand-brown font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Economia & Praticidade</span>
                 <h2 class="font-display text-3xl font-bold text-brand-darkbrown mt-2">Planos Mensais de Estética</h2>
                 <div class="w-20 h-1 bg-brand-brown mx-auto my-3 rounded-full"></div>
-                <p class="text-gray-600">Garanta seu pet sempre cheiroso, limpo e protegido. Os planos mensais garantem prioridade na agenda e descontos de até 25%!</p>
+                <p class="text-gray-600">Garanta seu pet sempre cheiroso, limpo e protegido. Os planos mensais garantem banhos frequentes com preço especial para cada porte.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -206,7 +206,7 @@
                             <div class="mt-4">
                                 <span class="text-sm font-semibold text-gray-500">A partir de</span>
                                 <div class="text-4xl font-extrabold text-brand-darkbrown"><span data-plan-price="bronze">R$ 90</span><span class="text-lg text-gray-500 font-normal">/mês</span></div>
-                                <span class="text-xs text-emerald-600 font-medium">Economia de ~15%</span>
+                                <div data-plan-sizes="bronze" class="grid grid-cols-3 gap-2 mt-3 text-xs"></div>
                             </div>
                         </div>
                         <ul class="py-6 space-y-3 text-sm text-gray-700">
@@ -222,9 +222,9 @@
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
                                 <span>Perfumaria e Laço/Gravata</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-400">
-                                <i class="fa-solid fa-xmark text-gray-300 text-base"></i>
-                                <span>Tosa Higiênica Inclusa</span>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 text-base"></i>
+                                <span><strong>1 Tosa Higiênica</strong> por mês</span>
                             </li>
                         </ul>
                     </div>
@@ -244,7 +244,7 @@
                             <div class="mt-4">
                                 <span class="text-sm font-semibold text-gray-500">A partir de</span>
                                 <div class="text-4xl font-extrabold text-brand-brown"><span data-plan-price="prata">R$ 170</span><span class="text-lg text-gray-500 font-normal">/mês</span></div>
-                                <span class="text-xs text-emerald-600 font-medium">Economia de ~20%</span>
+                                <div data-plan-sizes="prata" class="grid grid-cols-3 gap-2 mt-3 text-xs"></div>
                             </div>
                         </div>
                         <ul class="py-6 space-y-3 text-sm text-gray-700">
@@ -254,11 +254,11 @@
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span><strong>1 Tosa Higiênica</strong> por mês</span>
+                                <span><strong>2 Tosas Higiênicas</strong> por mês</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span>Corte de Unhas & Ouvidos inclusos</span>
+                                <span>Corte de Unhas & Limpeza de Ouvidos</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
@@ -279,21 +279,21 @@
                             <div class="mt-4">
                                 <span class="text-sm font-semibold text-gray-500">A partir de</span>
                                 <div class="text-4xl font-extrabold text-amber-800"><span data-plan-price="gold">R$ 250</span><span class="text-lg text-gray-500 font-normal">/mês</span></div>
-                                <span class="text-xs text-emerald-600 font-medium">Economia de ~25%</span>
+                                <div data-plan-sizes="gold" class="grid grid-cols-3 gap-2 mt-3 text-xs"></div>
                             </div>
                         </div>
                         <ul class="py-6 space-y-3 text-sm text-gray-700">
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span><strong>4 Banhos Completos</strong> no mês</span>
+                                <span><strong>6 Banhos Completos</strong> por mês (2 por semana)</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span><strong>1 Tosa Completa</strong> (Máquina ou Tesoura)</span>
+                                <span><strong>3 Tosas Higiênicas</strong> por mês</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span><strong>1 Hidratação Profunda</strong> por mês</span>
+                                <span><strong>2 Hidratações Profundas</strong> por mês</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
@@ -301,7 +301,7 @@
                             </li>
                             <li class="flex items-center gap-3">
                                 <i class="fa-solid fa-check text-emerald-500 text-base"></i>
-                                <span>Prioridade na agenda & Brinde mensal</span>
+                                <span>Prioridade na agenda & Brindes</span>
                             </li>
                         </ul>
                     </div>
