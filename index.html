@@ -28,6 +28,7 @@
             <nav class="hidden md:flex space-x-6 font-medium text-sm text-gray-700">
                 <a href="#servicos" class="hover:text-brand-brown transition">Serviços</a>
                 <a href="#precos" class="hover:text-brand-brown transition">Tabela de Preços</a>
+                <a href="#racas" class="hover:text-brand-brown transition">Raças por Porte</a>
                 <a href="#planos" class="hover:text-brand-brown transition">Planos Mensais</a>
                 <a href="#simulador" class="hover:text-brand-brown transition">Simulador</a>
             </nav>
@@ -172,6 +173,24 @@
                     </table>
                 </div>
             </div>
+        </section>
+
+        <!-- SEÇÃO 2.1: TABELA DE RAÇAS POR PORTE -->
+        <section id="racas" class="scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-brand-brown font-semibold text-sm uppercase tracking-wider">Qual é o porte do meu cão?</span>
+                <h2 class="font-display text-3xl font-bold text-brand-darkbrown mt-1">Tabela de Raças por Porte</h2>
+                <div class="w-20 h-1 bg-brand-brown mx-auto my-3 rounded-full"></div>
+                <p class="text-gray-600 text-sm">Classificação pelo peso médio do cão adulto. Para cães sem raça definida (SRD), filhotes ou pets fora do peso médio da raça, o porte é definido pelo peso na balança.</p>
+            </div>
+
+            <div class="max-w-md mx-auto mb-8 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="search" id="breedSearch" placeholder="Buscar raça... Ex: Shih Tzu" class="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-brown bg-white">
+            </div>
+
+            <!-- Colunas geradas por javascript/script.js (BREEDS) -->
+            <div id="breedTable" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- SEÇÃO 3: PLANO MENSAL (ASSINATURA) -->

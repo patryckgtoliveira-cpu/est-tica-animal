@@ -80,6 +80,38 @@ const PLANS = [
     { key: "gold", name: "Plano Mensal Gold VIP", option: "Plano Gold VIP (4 Banhos + Tosa + Hidratação)", prices: { pequeno: 250, medio: 320, grande: 440 } }
 ];
 
+// Raças por porte, pelo peso médio do cão adulto
+const BREEDS = {
+    pequeno: [
+        "Affenpinscher", "Bichon Bolonhês", "Bichon Frisé", "Boston Terrier", "Cairn Terrier",
+        "Cavalier King Charles Spaniel", "Chihuahua", "Chin Japonês", "Cão de Crista Chinês",
+        "Coton de Tuléar", "Dachshund (Salsicha)", "Fox Paulistinha (Terrier Brasileiro)",
+        "Fox Terrier", "Galgo Italiano", "Griffon de Bruxelas", "Havanês", "Jack Russell Terrier",
+        "Lhasa Apso", "Lulu da Pomerânia (Spitz Alemão Anão)", "Maltês", "Norfolk Terrier",
+        "Papillon", "Pequinês", "Pinscher Miniatura", "Poodle Toy", "Poodle Miniatura", "Pug",
+        "Schnauzer Miniatura", "Scottish Terrier", "Shih Tzu", "Spitz Japonês",
+        "West Highland White Terrier (Westie)", "Yorkshire Terrier"
+    ],
+    medio: [
+        "American Pit Bull Terrier", "Basenji", "Basset Hound", "Beagle", "Border Collie",
+        "Boiadeiro Australiano", "Bull Terrier", "Bulldog Francês", "Bulldog Inglês",
+        "Cão d'Água Português", "Chow Chow", "Cocker Spaniel Americano", "Cocker Spaniel Inglês",
+        "Corgi (Pembroke Welsh Corgi)", "Husky Siberiano", "Pastor Australiano",
+        "Pastor de Shetland (Sheltie)", "Poodle Médio", "Samoieda", "Schnauzer Standard",
+        "Shar-Pei", "Shiba Inu", "Soft Coated Wheaten Terrier", "Spitz Alemão Médio",
+        "Springer Spaniel Inglês", "Staffordshire Bull Terrier", "Whippet"
+    ],
+    grande: [
+        "Akita", "American Staffordshire Terrier", "Bloodhound", "Bobtail (Old English Sheepdog)",
+        "Boxer", "Bullmastiff", "Cane Corso", "Collie", "Dálmata", "Dobermann", "Dogo Argentino",
+        "Dogue Alemão", "Dogue de Bordeaux", "Fila Brasileiro", "Golden Retriever",
+        "Greyhound (Galgo Inglês)", "Labrador Retriever", "Leonberger", "Malamute do Alasca",
+        "Mastiff Inglês", "Pastor Alemão", "Pastor Belga Malinois", "Pastor Branco Suíço",
+        "Pastor do Cáucaso", "Pointer Inglês", "Poodle Standard (Gigante)", "Rhodesian Ridgeback",
+        "Rottweiler", "São Bernardo", "Setter Irlandês", "Terra Nova", "Weimaraner"
+    ]
+};
+
 // ==========================================================
 // UTILITÁRIOS
 // ==========================================================
@@ -123,6 +155,35 @@ function renderPriceTable() {
     });
 
     $("priceTableBody").innerHTML = rows.join("");
+}
+
+// Ignora maiúsculas e acentos na busca ("sao bernardo" encontra "São Bernardo")
+const normalize = (text) => text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+function renderBreedTable(filter = "") {
+    const query = normalize(filter.trim());
+
+    const columns = Object.entries(BREEDS).map(([size, breeds]) => {
+        const matches = breeds.filter((breed) => normalize(breed).includes(query));
+        const items = matches.length > 0
+            ? matches.map((breed) => `
+                <li class="flex items-center gap-2 py-1.5">
+                    <i class="fa-solid fa-paw text-xs text-brand-lightbrown"></i> ${breed}
+                </li>`).join("")
+            : `<li class="py-1.5 text-gray-400 italic">Nenhuma raça encontrada</li>`;
+        const [title, weight] = SIZES[size].split(" (");
+
+        return `
+            <div class="bg-white rounded-2xl shadow-sm border border-brand-brown/10 overflow-hidden">
+                <div class="bg-brand-brown text-white text-center py-4 px-4">
+                    <h3 class="font-display text-xl font-bold">${title}</h3>
+                    <span class="text-xs text-amber-200">(${weight} · ${matches.length} raças</span>
+                </div>
+                <ul class="px-6 py-4 text-sm text-gray-700 divide-y divide-gray-100">${items}</ul>
+            </div>`;
+    });
+
+    $("breedTable").innerHTML = columns.join("");
 }
 
 function renderPlanPrices() {
@@ -206,6 +267,7 @@ function sendWhatsApp() {
 
 function init() {
     renderPriceTable();
+    renderBreedTable();
     renderPlanPrices();
     renderSimulatorOptions();
 
@@ -215,6 +277,7 @@ function init() {
         radio.addEventListener("change", () => togglePlanType(radio.value));
     });
     $("whatsappButton").addEventListener("click", sendWhatsApp);
+    $("breedSearch").addEventListener("input", (event) => renderBreedTable(event.target.value));
 
     updateSummary();
 }
