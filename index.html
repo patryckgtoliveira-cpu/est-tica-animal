@@ -36,12 +36,17 @@
     </header>
 
     <!-- BANNER PRINCIPAL -->
-    <section class="bg-white shadow-xl">
+    <section class="bg-white shadow-xl relative">
         <img src="imagem/hero.jpg" alt="Estética Animal - Banho e Tosa" class="w-full max-w-7xl mx-auto block">
+
+        <!-- Logo na frente do banner, centralizado na divisa com a faixa -->
+        <div class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 z-10 w-24 h-24 md:w-36 md:h-36 bg-white rounded-full p-2 md:p-3 shadow-2xl border-4 border-brand-lightbrown flex items-center justify-center hover:scale-105 transition duration-300">
+            <img src="imagem/logo.png" alt="Logo Estética Animal" class="w-full h-full object-contain rounded-full">
+        </div>
     </section>
 
     <!-- FAIXA ABAIXO DO BANNER: FRASE E PORTES ATENDIDOS -->
-    <section class="bg-brand-brown text-white py-8 px-4 text-center">
+    <section class="bg-brand-brown text-white pt-16 md:pt-24 pb-8 px-4 text-center">
         <div class="max-w-4xl mx-auto space-y-4">
             <p class="text-lg md:text-2xl font-light text-amber-100 italic">
                 "O carinho, a dedicação e o cuidado estético que o seu melhor amigo merece todos os dias."
