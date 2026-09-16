@@ -123,6 +123,9 @@ const formatPrice = (value) =>
 
 const findByKey = (list, key) => list.find((item) => item.key === key);
 
+// Ordem alfabética em português (ignora acentos e maiúsculas)
+const byName = (a, b) => a.localeCompare(b, "pt-BR", { sensitivity: "base" });
+
 const toOptions = (items, getLabel) =>
     items.map((item) => `<option value="${item.key}">${getLabel(item)}</option>`).join("");
 
@@ -164,7 +167,9 @@ function renderBreedTable(filter = "") {
     const query = normalize(filter.trim());
 
     const columns = Object.entries(BREEDS).map(([size, breeds]) => {
-        const matches = breeds.filter((breed) => normalize(breed).includes(query));
+        const matches = breeds
+            .filter((breed) => normalize(breed).includes(query))
+            .sort(byName);
         const items = matches.length > 0
             ? matches.map((breed) => `
                 <li class="flex items-center gap-2 py-1.5">
@@ -196,15 +201,15 @@ function renderPlanPrices() {
 // Todas as raças numa lista única, em ordem alfabética
 const ALL_BREEDS = Object.entries(BREEDS)
     .flatMap(([size, breeds]) => breeds.map((name) => ({ name, size })))
-    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+    .sort((a, b) => byName(a.name, b.name));
 
 const OTHER_BREED = "Sem raça definida (SRD) / Outra";
 
 function renderSimulatorOptions() {
     $("petBreed").innerHTML = [
         `<option value="">Selecione a raça</option>`,
-        ...ALL_BREEDS.map((breed) => `<option value="${breed.name}">${breed.name}</option>`),
-        `<option value="${OTHER_BREED}">${OTHER_BREED}</option>`
+        `<option value="${OTHER_BREED}">${OTHER_BREED}</option>`,
+        ...ALL_BREEDS.map((breed) => `<option value="${breed.name}">${breed.name}</option>`)
     ].join("");
     $("petSize").innerHTML = toOptions(Object.keys(SIZES).map((key) => ({ key })), ({ key }) => SIZES[key]);
     $("avulsoService").innerHTML = toOptions(SERVICES, (service) => service.name);
@@ -291,6 +296,48 @@ function sendWhatsApp() {
 }
 
 // ==========================================================
+// ROLAGEM SUAVE DOS LINKS INTERNOS (#secao)
+// ==========================================================
+
+const SCROLL_DURATION_MS = 1000;
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+function smoothScrollTo(target) {
+    const headerOffset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const start = window.scrollY;
+    const distance = target.getBoundingClientRect().top - headerOffset;
+
+    // Respeita quem prefere menos animação no sistema
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.scrollTo(0, start + distance);
+        return;
+    }
+
+    const startTime = performance.now();
+    const step = (now) => {
+        const progress = Math.min((now - startTime) / SCROLL_DURATION_MS, 1);
+        window.scrollTo(0, start + distance * easeInOutCubic(progress));
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    };
+    requestAnimationFrame(step);
+}
+
+function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const target = document.querySelector(link.getAttribute("href"));
+            if (!target) return;
+
+            event.preventDefault();
+            history.pushState(null, "", link.getAttribute("href"));
+            smoothScrollTo(target);
+        });
+    });
+}
+
+// ==========================================================
 // INICIALIZAÇÃO
 // ==========================================================
 
@@ -299,6 +346,7 @@ function init() {
     renderBreedTable();
     renderPlanPrices();
     renderSimulatorOptions();
+    setupSmoothScroll();
 
     // Registrado antes do listener do formulário para o porte mudar antes do resumo
     $("petBreed").addEventListener("change", (event) => selectBreed(event.target.value));
