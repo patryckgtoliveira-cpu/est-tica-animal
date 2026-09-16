@@ -18,7 +18,7 @@ const SERVICES = [
         tableName: "Banho Simples (Pêlo Curtinho)",
         description: "Inclui corte de unhas e limpeza de ouvidos",
         icon: "fa-shower",
-        prices: { pequeno: 50, medio: 70, grande: 95 }
+        prices: { pequeno: 60, medio: 75, grande: 95 }
     },
     {
         key: "banho_longo",
@@ -26,7 +26,7 @@ const SERVICES = [
         tableName: "Banho Pelagem Longa / Densa",
         description: "Shampoo nutritivo + secagem especial",
         icon: "fa-soap",
-        prices: { pequeno: 65, medio: 85, grande: 115 }
+        prices: { pequeno: 70, medio: 90, grande: 130 }
     },
     {
         key: "banho_higienica",
@@ -34,7 +34,7 @@ const SERVICES = [
         tableName: "Banho + Tosa Higiênica",
         description: "Banho completo + higiene íntima e patas",
         icon: "fa-scissors",
-        prices: { pequeno: 75, medio: 95, grande: 130 }
+        prices: { pequeno: 70, medio: 85, grande: 120 }
     },
     {
         key: "banho_tosa_maquina",
@@ -42,7 +42,7 @@ const SERVICES = [
         tableName: "Banho + Tosa Completa (Máquina)",
         description: "Banho + tosa padrão de raça ou baixa",
         icon: "fa-cut",
-        prices: { pequeno: 90, medio: 120, grande: 160 }
+        prices: { pequeno: 90, medio: 100, grande: 120 }
     },
     {
         key: "banho_tosa_tesoura",
@@ -50,7 +50,7 @@ const SERVICES = [
         tableName: "Banho + Tosa na Tesoura / Bebê",
         description: "Trabalho manual exclusivo e acabamento fino",
         icon: "fa-wand-magic-sparkles",
-        prices: { pequeno: 120, medio: 150, grande: 200 }
+        prices: { pequeno: 120, medio: 130, grande: 150 }
     }
 ];
 
@@ -63,14 +63,14 @@ const EXTRAS = [
         description: "Máscara de tratamento pré/pós banho",
         icon: "fa-spa",
         highlight: true,
-        prices: { pequeno: 25, medio: 35, grande: 45 }
+        prices: { pequeno: 25, medio: 25, grande: 25 }
     },
     {
         key: "escovacao",
         name: "Escovação Dental",
         tableName: "Escovação Dental + Flúor Pet",
         icon: "fa-tooth",
-        prices: { pequeno: 15, medio: 15, grande: 15 }
+        prices: { pequeno: 10, medio: 10, grande: 10 }
     }
 ];
 
