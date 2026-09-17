@@ -1,3 +1,125 @@
+/* ==========================================================
+   BANNER PRINCIPAL (HTML + CSS)
+   ========================================================== */
+
+.hero {
+    --hero-brown: #5C3A21;
+}
+
+.hero-title {
+    font-size: clamp(3.25rem, 11vw, 7.5rem);
+}
+
+/* Manchas marrons nos cantos */
+.hero-blob {
+    position: absolute;
+    background: var(--hero-brown);
+}
+
+.hero-blob--top {
+    top: -70px;
+    right: -60px;
+    width: 220px;
+    height: 200px;
+    border-radius: 42% 58% 35% 65% / 40% 45% 55% 60%;
+}
+
+.hero-blob--bottom {
+    bottom: -90px;
+    left: -70px;
+    width: 260px;
+    height: 180px;
+    border-radius: 60% 40% 55% 45% / 55% 60% 40% 45%;
+}
+
+/* Ossos e patinhas */
+.hero-bone,
+.hero-paw {
+    position: absolute;
+    color: var(--hero-brown);
+}
+
+.hero-bone--1 { top: 8%;  left: 47%; font-size: 3.5rem; --rotate: 35deg; }
+.hero-bone--2 { top: 34%; left: 51%; font-size: 2.25rem; --rotate: -30deg; animation-delay: -2s; }
+.hero-paw--1  { top: 16%; right: 6%;  font-size: 2.75rem; --rotate: -15deg; animation-delay: -1s; }
+.hero-paw--2  { top: 45%; right: 3%;  font-size: 2.5rem;  --rotate: 20deg;  animation-delay: -3s; }
+.hero-paw--3  { bottom: 12%; right: 12%; font-size: 2.25rem; --rotate: -25deg; animation-delay: -4s; }
+.hero-paw--big { bottom: -30px; left: 45%; font-size: 8rem; transform: rotate(-20deg); opacity: 0.9; }
+
+.hero-bone,
+.hero-paw:not(.hero-paw--big) {
+    transform: rotate(var(--rotate));
+}
+
+/* No celular, decoração menor e mais discreta para não brigar com o texto */
+@media (max-width: 767px) {
+    .hero-blob--top    { width: 130px; height: 120px; top: -50px; right: -40px; }
+    .hero-blob--bottom { width: 150px; height: 110px; bottom: -60px; left: -50px; }
+    .hero-bone--1  { top: 3%; left: 8%; font-size: 1.75rem; }
+    .hero-bone--2  { display: none; }
+    .hero-paw--1   { top: 30%; right: 4%; font-size: 1.5rem; }
+    .hero-paw--2   { top: 58%; right: auto; left: 5%; font-size: 1.5rem; }
+    .hero-paw--3   { bottom: 6%; right: 6%; font-size: 1.5rem; }
+    .hero-paw--big { font-size: 6rem; left: auto; right: -20px; bottom: -25px; opacity: 0.15; }
+}
+
+/* ==========================================================
+   ANIMAÇÕES LEVES
+   ========================================================== */
+
+/* Letras do título entram uma a uma (spans criados em script.js) */
+.hero-letter {
+    display: inline-block;
+    opacity: 0;
+    animation: letter-in 0.6s ease-out forwards, letter-wave 4s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 60ms), calc(1.2s + var(--i) * 120ms);
+}
+
+@keyframes letter-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Depois de entrar, cada letra "respira" levemente */
+@keyframes letter-wave {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+.hero-subtitle {
+    opacity: 0;
+    animation: letter-in 0.8s ease-out 0.7s forwards;
+}
+
+.hero-logo {
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-float {
+    animation: float-rotate 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+@keyframes float-rotate {
+    0%, 100% { transform: translateY(0) rotate(var(--rotate)); }
+    50%      { transform: translateY(-8px) rotate(calc(var(--rotate) + 6deg)); }
+}
+
+/* Quem pediu menos movimento no sistema vê tudo parado */
+@media (prefers-reduced-motion: reduce) {
+    .hero-letter,
+    .hero-subtitle,
+    .hero-logo,
+    .hero-float {
+        animation: none;
+        opacity: 1;
+    }
+}
+
 @media print {
     .no-print { display: none !important; }
     body { background: white !important; color: black !important; }

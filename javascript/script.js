@@ -353,7 +353,20 @@ function setupSmoothScroll() {
 // INICIALIZAÇÃO
 // ==========================================================
 
+// Separa o texto em letras para a animação do título (css/style.css → .hero-letter)
+function animateLetters() {
+    let index = 0;
+    document.querySelectorAll("[data-animate-letters]").forEach((el) => {
+        const text = el.textContent;
+        el.setAttribute("aria-label", text);
+        el.innerHTML = [...text]
+            .map((letter) => `<span class="hero-letter" aria-hidden="true" style="--i:${index++}">${letter}</span>`)
+            .join("");
+    });
+}
+
 function init() {
+    animateLetters();
     renderPriceTable();
     renderBreedTable();
     renderPlanPrices();
