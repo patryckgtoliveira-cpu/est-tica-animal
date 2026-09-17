@@ -303,8 +303,29 @@ function sendWhatsApp() {
     }
     lines.push(`*Valor Estimado:* ${formatPrice(quote.total)}`, "", "Como podemos verificar a disponibilidade da agenda?");
 
-    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener");
+    window.open(whatsappUrl(lines), "_blank", "noopener");
+}
+
+const whatsappUrl = (lines) =>
+    `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(lines.join("\n"))}`;
+
+// Botões "Assinar Plano" abrem o WhatsApp com a mensagem do plano clicado
+function setupPlanLinks() {
+    document.querySelectorAll("[data-plan-whatsapp]").forEach((link) => {
+        const plan = findByKey(PLANS, link.dataset.planWhatsapp);
+        const lines = [
+            `Olá, Estética Animal! Quero assinar o *${plan.name}*.`,
+            "",
+            "*Valores do plano:*",
+            ...Object.keys(SIZES).map((size) => `• ${SIZES[size]}: ${formatPrice(plan.prices[size])}/mês`),
+            "",
+            "Como faço para assinar?"
+        ];
+
+        link.href = whatsappUrl(lines);
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+    });
 }
 
 // ==========================================================
@@ -371,6 +392,7 @@ function init() {
     renderBreedTable();
     renderPlanPrices();
     renderSimulatorOptions();
+    setupPlanLinks(); // antes da rolagem suave, que só pega links "#..."
     setupSmoothScroll();
 
     // Registrado antes do listener do formulário para o porte mudar antes do resumo
